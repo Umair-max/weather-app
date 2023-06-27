@@ -25,7 +25,6 @@ function ForcastResport(props) {
   var isMounted = false;
 
   useEffect(() => {
-    console.log('called');
     isMounted = true;
     if (isFocused) {
       recieveLocation();

@@ -1,21 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../config/colors';
 
 function HoursCard({item, url}) {
-  return (
-    <LinearGradient style={styles.background} colors={colors.cardBackground}>
-      <View>
-        {item && <Text style={[styles.text, {fontSize: 16}]}>{item.time}</Text>}
-        {item && <Text style={styles.text}>{item.temp}&deg;C</Text>}
-      </View>
-      <Image
-        source={{uri: 'https:' + url}}
-        style={{height: 90, width: '60%'}}
-      />
-    </LinearGradient>
-  );
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+
+  const giventime = item.time;
+  const givenHour = giventime.split(':')[0];
+  if (currentHour >= givenHour) {
+    return (
+      <LinearGradient style={styles.background} colors={colors.cardBackground}>
+        <View>
+          <Text style={[styles.text, {fontSize: 16}]}>{givenHour}:00</Text>
+
+          {item && <Text style={styles.text}>{item.temp}&deg;C</Text>}
+        </View>
+        <Image
+          resizeMode="contain"
+          source={{uri: 'https:' + url}}
+          style={{height: 90, width: '60%'}}
+        />
+      </LinearGradient>
+    );
+  }
 }
 const styles = StyleSheet.create({
   background: {

@@ -91,7 +91,6 @@ function SearchScreen(props) {
           value={name}
           onChangeText={text => setName(text)}
           onPress={() => {
-            // fetchingData();
             name && GetCurrentWeather(name);
           }}
         />

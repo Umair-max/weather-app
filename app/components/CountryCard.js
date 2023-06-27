@@ -40,9 +40,11 @@ function CountryCard({item, index, setCurrentWeather}) {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
+            // backgroundColor: colors.black,
           }}>
           <Text style={[styles.text, {fontSize: 28}]}>{item.temp}&deg;</Text>
           <Image
+            resizeMode="contain"
             source={{uri: 'https:' + item.icon}}
             style={{height: 64, width: 80}}
           />
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     width: '45%',
     height: 120,
     borderRadius: 20,
-    padding: 10,
+    paddingLeft: 13,
     margin: 10,
   },
   text: {

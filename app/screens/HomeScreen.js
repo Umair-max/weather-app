@@ -82,15 +82,16 @@ function HomeScreen({route}) {
     }
   };
 
-  changeColor = () => {
-    if (firstColor === colors.blue) {
-      setFirstColor(colors.dimBlue);
-      setSecondColor(colors.blue);
-    } else {
-      setFirstColor(colors.blue);
-      setSecondColor(colors.dimBlue);
-    }
+  const handleButton1 = () => {
+    setFirstColor(colors.blue);
+    setSecondColor(colors.dimBlue);
   };
+
+  const handleButton2 = () => {
+    setFirstColor(colors.dimBlue);
+    setSecondColor(colors.blue);
+  };
+
   const retrieveLocation = async () => {
     try {
       const storedLocation = await AsyncStorage.getItem('location');
@@ -149,12 +150,12 @@ function HomeScreen({route}) {
               <Text style={styles.dateText}>{hoursWeather[index].date}</Text>
             )}
             <View style={styles.topBottons}>
-              <TouchableWithoutFeedback onPress={() => changeColor()}>
+              <TouchableWithoutFeedback onPress={() => handleButton1()}>
                 <View style={[styles.button, {backgroundColor: firstColor}]}>
                   <Text style={styles.buttonTitle}>Forcast</Text>
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback onPress={() => changeColor()}>
+              <TouchableWithoutFeedback onPress={() => handleButton2()}>
                 <View style={[styles.button, {backgroundColor: secondColor}]}>
                   <Text style={styles.buttonTitle}>Air Quality</Text>
                 </View>
@@ -258,7 +259,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     alignSelf: 'center',
   },
-
   topBottons: {
     backgroundColor: colors.dimBlue,
     height: 40,

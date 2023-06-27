@@ -3,7 +3,6 @@ import {Image, View, StyleSheet} from 'react-native';
 
 function MyImage({source}) {
   const url = source;
-  console.log(url);
   const time = url.split('/')[5];
   const code = url.split('/')[6].split('.')[0];
 
