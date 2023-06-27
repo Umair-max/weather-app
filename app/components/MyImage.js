@@ -3,6 +3,7 @@ import {Image, View, StyleSheet} from 'react-native';
 
 function MyImage({source}) {
   const url = source;
+
   const time = url.split('/')[5];
   const code = url.split('/')[6].split('.')[0];
 
@@ -55,6 +56,13 @@ function MyImage({source}) {
         icon = require('../assets/day200.png');
       } else if (time === 'night') {
         icon = require('../assets/night200.png');
+      }
+      break;
+    case '386':
+      if (time === 'day') {
+        icon = require('../assets/day389.png');
+      } else if (time === 'night') {
+        icon = require('../assets/night389.png');
       }
       break;
     case '389':
@@ -118,6 +126,27 @@ function MyImage({source}) {
         icon = require('../assets/day176.png');
       } else if (time === 'night') {
         icon = require('../assets/night176.png');
+      }
+      break;
+    case '395':
+      if (time === 'day') {
+        icon = require('../assets/day371.png');
+      } else if (time === 'night') {
+        icon = require('../assets/night371.png');
+      }
+      break;
+    case '371':
+      if (time === 'day') {
+        icon = require('../assets/day371.png');
+      } else if (time === 'night') {
+        icon = require('../assets/night371.png');
+      }
+      break;
+    case '314':
+      if (time === 'day') {
+        icon = require('../assets/day314.png');
+      } else if (time === 'night') {
+        icon = require('../assets/night314.png');
       }
       break;
     default:

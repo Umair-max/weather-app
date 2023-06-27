@@ -20,6 +20,8 @@ import colors from '../config/colors';
 import MyImage from '../components/MyImage';
 
 function HomeScreen({route}) {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
   const [firstColor, setFirstColor] = useState(colors.blue);
   const [secondColor, setSecondColor] = useState(colors.dimBlue);
   const [index, setIndex] = useState(0);
@@ -61,21 +63,24 @@ function HomeScreen({route}) {
         const condition = snap.condition;
         const humidity = snap.humidity;
         const temp = snap.temp_c.toFixed(0);
-        const time = snap.time.split(' ')[1];
+        const time = snap.time.split(' ')[1].split(':')[0];
         const date = snap.time.split(' ')[0];
         const windSpeed = snap.wind_kph.toFixed(0);
-        hoursDataArray.push({
-          chanceOfRain: chanceOfRain,
-          chanceOfSnow: chanceOfSnow,
-          condition: condition,
-          humidity: humidity,
-          temp: temp,
-          time: time,
-          windSpeed: windSpeed,
-          date: date,
-        });
+        if (time >= currentHour) {
+          hoursDataArray.push({
+            chanceOfRain: chanceOfRain,
+            chanceOfSnow: chanceOfSnow,
+            condition: condition,
+            humidity: humidity,
+            temp: temp,
+            time: time + ':00',
+            windSpeed: windSpeed,
+            date: date,
+          });
+        }
       });
       setHoursWeather(hoursDataArray);
+      console.log(hoursDataArray);
       setIsLoaded(false);
     } catch (error) {
       Alert.alert('error', error);

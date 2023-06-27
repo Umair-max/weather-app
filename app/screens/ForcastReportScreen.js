@@ -17,6 +17,8 @@ import HoursCard from '../components/HourCard';
 import colors from '../config/colors';
 
 function ForcastResport(props) {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
   const [daysWeather, setDaysWeather] = useState([]);
   const [hoursWeather, setHoursWeather] = useState([]);
   const isFocused = useIsFocused();
@@ -77,17 +79,19 @@ function ForcastResport(props) {
         const condition = snap.condition;
         const humidity = snap.humidity;
         const temp = snap.temp_c.toFixed(0);
-        const time = snap.time.split(' ')[1];
+        const time = snap.time.split(' ')[1].split(':')[0];
         const windSpeed = snap.wind_kph;
-        hoursDataArray.push({
-          chanceOfRain: chanceOfRain,
-          chance_of_snow: chanceOfSnow,
-          condition: condition,
-          humidity: humidity,
-          temp: temp,
-          time: time,
-          windSpeed: windSpeed,
-        });
+        if (time >= currentHour) {
+          hoursDataArray.push({
+            chanceOfRain: chanceOfRain,
+            chance_of_snow: chanceOfSnow,
+            condition: condition,
+            humidity: humidity,
+            temp: temp,
+            time: time + ':00',
+            windSpeed: windSpeed,
+          });
+        }
       });
       setHoursWeather(hoursDataArray);
       setDaysWeather(daysDataArray);
@@ -96,7 +100,6 @@ function ForcastResport(props) {
       console.error(error);
     }
   };
-
   return (
     <LinearGradient colors={colors.background} style={{flex: 1}}>
       <SafeAreaView>

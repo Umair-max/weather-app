@@ -46,7 +46,7 @@ function CountryCard({item, index, setCurrentWeather}) {
           <Image
             resizeMode="contain"
             source={{uri: 'https:' + item.icon}}
-            style={{height: 64, width: 80}}
+            style={styles.image}
           />
         </View>
         <Text style={styles.weatherText} numberOfLines={1}>
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     paddingLeft: 13,
     margin: 10,
   },
+  image: {height: 64, width: 80, marginTop: 5},
   text: {
     color: colors.white,
     fontSize: 20,
