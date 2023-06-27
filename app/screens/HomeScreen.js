@@ -1,4 +1,3 @@
-import {useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {
   Text,
@@ -7,7 +6,6 @@ import {
   View,
   FlatList,
   TouchableWithoutFeedback,
-  Image,
   TouchableOpacity,
   ActivityIndicator,
   Alert,
@@ -80,7 +78,6 @@ function HomeScreen({route}) {
         }
       });
       setHoursWeather(hoursDataArray);
-      console.log(hoursDataArray);
       setIsLoaded(false);
     } catch (error) {
       Alert.alert('error', error);

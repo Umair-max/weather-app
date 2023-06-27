@@ -37,7 +37,6 @@ function ForcastResport(props) {
   }, [props, isFocused]);
   const recieveLocation = async () => {
     const storedLocation = await AsyncStorage.getItem('location');
-    console.log(storedLocation);
     getDaysWeather(storedLocation);
   };
 
